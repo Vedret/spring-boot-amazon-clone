@@ -1,14 +1,10 @@
 package com.springboot.amazonclone;
-
-
 import static org.junit.Assert.*;
-import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.runner.RunWith;
 import com.springboot.amazonclone.entity.User;
 import com.springboot.amazonclone.repository.UserRepository;
 
@@ -36,7 +32,7 @@ class AmazoncloneApplicationTests {
     @Test
     public void testFetchData(){
         /*Test data retrieval*/
-        User userA = userMongoRepository.findByName("Bob");
+        User userA = userMongoRepository.findByFullName("Bob");
         assertNotNull(userA);
         assertEquals(38, userA.getAge());
         /*Get all products, list should only have two*/
@@ -51,10 +47,10 @@ class AmazoncloneApplicationTests {
     @Test
     public void testDataUpdate(){
         /*Test update*/
-        User userB = userMongoRepository.findByName("Bob");
+        User userB = userMongoRepository.findByFullName("Bob");
         userB.setAge(40);
         userMongoRepository.save(userB);
-        User userC= userMongoRepository.findByName("Bob");
+        User userC= userMongoRepository.findByFullName("Bob");
         assertNotNull(userC);
         assertEquals(40, userC.getAge());
     }
