@@ -1,5 +1,6 @@
 package com.springboot.amazonclone.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
-	public ModelAndView home() {
+	public ModelAndView home(HttpSession session) {
 	    ModelAndView modelAndView = new ModelAndView();
 	    modelAndView.setViewName("home");
 	    return modelAndView;
