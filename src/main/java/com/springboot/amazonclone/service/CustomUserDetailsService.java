@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,21 @@ public class CustomUserDetailsService implements UserDetailsService {
 	    Role userRole = roleRepository.findByRole("ADMIN");
 	    user.setRoles(new HashSet<>(Arrays.asList(userRole)));
 	    userRepository.save(user);
+	 }
+	 
+	 public void updateUser(User user ,User editedUser ) {
+		 
+		   User updateUser = userRepository.findByEmail(user.getEmail());
+		   updateUser.setPassword(bCryptPasswordEncoder.encode(editedUser.getPassword()));
+		   updateUser.setEnabled(true);
+		   updateUser.setAge(55);
+		   updateUser.setEmail(editedUser.getEmail());
+		   updateUser.setFullname(editedUser.getFullname());
+		   
+		    Role userRole = roleRepository.findByRole("ADMIN");
+		    updateUser.setRoles(new HashSet<>(Arrays.asList(userRole)));
+		    userRepository.save(updateUser);
+		 
 	 }
 
 	 //Create a method for handling the login mechanism that checks or compares username with the user from MongoDB collection.

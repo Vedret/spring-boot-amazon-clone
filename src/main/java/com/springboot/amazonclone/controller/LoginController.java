@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,8 @@ public class LoginController {
 	    return modelAndView;
 	}
 	
+	
+	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public ModelAndView signup() {
 	    ModelAndView modelAndView = new ModelAndView();
@@ -44,11 +47,15 @@ public class LoginController {
 	    User userExists = userService.findUserByEmail(user.getEmail());
 	    if (userExists != null) {
 	        bindingResult
-	                .rejectValue("email", "error.user",
+	                .rejectValue("email", "error.email",
 	                        "There is already a user registered with the username provided");
+	        			System.out.println(userExists);
+	        			 modelAndView.setViewName("signup");
 	    }
+	    
 	    if (bindingResult.hasErrors()) {
 	        modelAndView.setViewName("signup");
+	 
 	    } else {
 	        userService.saveUser(user);
 	        modelAndView.addObject("successMessage", "User has been registered successfully");
@@ -70,6 +77,36 @@ public class LoginController {
 	    modelAndView.setViewName("dashboard");
 	    return modelAndView;
 	}
+	
+	@RequestMapping(value = "/edit-profile", method = RequestMethod.GET)
+	public ModelAndView editProfile( ) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    User user = userService.findUserByEmail(auth.getName());
+	    System.out.println(user.getFullname());
+	    modelAndView.addObject("currentUser", user);
+	    modelAndView.setViewName("edit-profile");
+	    return modelAndView;
+	}
+	
+	@RequestMapping(value = "/edit-profile", method = RequestMethod.POST)
+	public ModelAndView updateProfile(@ModelAttribute("currentUser")  User editedUser ) {
+		ModelAndView modelAndView = new ModelAndView();
+	
+	        modelAndView.setViewName("edit-profile");
+	        //Original user that needs to be updated
+	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        
+	        userService.updateUser(user,editedUser);
+	        
+	        modelAndView.setViewName("login");	
+	        return modelAndView;
+	        
+	}
+	
+	
 	
 	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
 	public ModelAndView home(HttpSession session) {

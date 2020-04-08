@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+       layout:decorate="~{default}">
+    <head>
+        <title>Edit profile</title>
+    </head>
+    <body class="text-center">
+
+        <div layout:fragment="content">
+
+				        
+            <form class="form-signin" th:action="@{/edit-profile}" method="post" 
+            oninput='password2.setCustomValidity(password2.value != password.value ? "Passwords do not match." : "")'>
+            
+            <label for="inputUsername" class="sr-only">email</label>
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="email" required="" th:value="${currentUser.email}" />
+            
+            <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="" />
+                
+                <label for="inputPassword" class="sr-only">Confirm password</label>
+                <input type="password" name="password2" id="inputPassword" class="form-control" placeholder="Confirm password" required="" />
+                
+                <label for="inputFullname" class="sr-only">Full Name</label>
+                <input type="text" name="fullname" id="inputEmail" class="form-control" placeholder="Full Name" required="" th:value="${currentUser.fullname}" />
+                    
+                
+           
+                <button class="btn btn-md btn-success btn-block" type="Submit">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>

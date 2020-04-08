@@ -1,5 +1,4 @@
 package com.springboot.amazonclone.config;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import com.springboot.amazonclone.service.CustomUserDetailsService;
 
 @Configuration
@@ -40,20 +38,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-	    http
-	        .authorizeRequests()
+	    http.authorizeRequests()
 	            .antMatchers("/").permitAll()
 	            .antMatchers("/testsession").permitAll()
+	            .antMatchers("/edit-profile").permitAll()
 	            .antMatchers("/login").permitAll()
 	            .antMatchers("/signup").permitAll()
 	            .antMatchers("/dashboard/**").hasAuthority("ADMIN").anyRequest()
 	            .authenticated().and().csrf().disable().formLogin().successHandler(customizeAuthenticationSuccessHandler)
 	            .loginPage("/login").failureUrl("/login?error=true")
-	            .usernameParameter("email")
-	            .passwordParameter("password")
+	           .usernameParameter("email")
+	           .passwordParameter("password")
 	            .and().logout()
 	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 	            .logoutSuccessUrl("/").and().exceptionHandling();
+
 	}
 	
 	@Override
