@@ -6,19 +6,24 @@
     </head>
     <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
     <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
-</div>
+   </div>
     <body>
         <div layout:fragment="content">
             <form class="form-signin" th:action="@{/signup}" method="post" th:object="${user}">
                <h1 class="h3 mb-3 font-weight-normal">Signup Here</h1>
+               
                <td th:if="${#fields.hasErrors('email')}"  th:errors="*{email}" th:color="red">Name Error</td>
                 <td th:if="${#fields.hasErrors('password')}"  th:errors="*{password}" th:color="red">Name Error</td>
+                
                 <label for="inputUsername" class="sr-only">Username</label>
                 <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Username" required="" />
+                
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="" />
+                
                 <label for="inputFullname" class="sr-only">Full Name</label>
                 <input type="text" name="fullname" id="inputEmail" class="form-control" placeholder="Full Name" required="" />
+                
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
             </form>
             <form class="form-signin" th:action="@{/login}" method="get">

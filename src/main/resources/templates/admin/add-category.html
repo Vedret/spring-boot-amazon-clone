@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+       layout:decorate="~{default}">
+    <head>
+        <title>Login</title>
+    </head>
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
+   </div>
+    <body class="text-center">
+        <div layout:fragment="content">
+            <form class="form-signin" th:action="@{/admin/add-category}" method="post" th:object="${category}" >
+                 <h1 class="h3 mb-3 font-weight-normal">Add a new category</h1>
+                 
+                
+                <div th:if="${successMessage}" class="alert alert-success alert-dismissable" th:utext="${successMessage}">
+               </div>
+               <div class="alert alert-danger alert-dismissable" th:if="${#fields.hasErrors('category')}"  th:errors="*{category}" th:color="red">Name Error            
+               </div>
+                
+                <label for="inputEmail" class="sr-only">Name</label>
+                <input type="text" name="category" id="inputEmail" class="form-control" placeholder="Name of category" required="" />
+           
+                <button class="btn btn-sm btn-success btn-block" type="Submit">Submit</button>
+                
+            </form>
+        </div>
+    </body>
+</html>

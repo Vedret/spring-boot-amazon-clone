@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+       layout:decorate="~{default}">
+    <head>
+        <title>Login</title>
+    </head>
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
+   </div>
+    <body class="text-center">
+        <div layout:fragment="content">
+       
+           <div class="container">
+           	<div class="row">
+	           		
+		           	<div class="col-md-4">	
+		           	<img  th:src="${product.image}">		           			          	
+					 </div>	
+					 <div class="col-md-4">			           			          	
+					 </div>		
+					 <div style="text-align:left" class="col-md-4">	
+					 <h1  th:text="${product.name}" />	
+					 <p><h2>$ <span th:text="${product.price}"></span></h2></p>	           			          	
+					 </div>			
+					</tr>
+	           	</div>
+           	</div>
+           </div>
+        
+    </body>
+</html>
