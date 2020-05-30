@@ -1,9 +1,11 @@
 package com.springboot.amazonclone.entity;
-
-import java.util.Set;
+import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import io.github.kaiso.relmongo.annotation.FetchType;
+import io.github.kaiso.relmongo.annotation.JoinProperty;
+import io.github.kaiso.relmongo.annotation.OneToMany;
 
 @Document(collection = "product")
 public class Product {
@@ -11,14 +13,22 @@ public class Product {
 	@Id
     String id;
 	
+	@NotEmpty(message = "*Please provide a name of product")
 	private String name;
 	
+	@Range(min=0,max=1000000)//(message = "*Please provide a price of product")
 	private Number price;
 	
 	private String image;
 	
-	@DBRef(lazy = true)
-    private Category category;
+	 //Product will have only one Category 
+	//LAZY = fetch when needed. In our case fetch products only when we need it
+    //EAGER = fetch immediately, will always fetch the products. Loads all the relationship
+	 //@NotEmpty(message = "*Please provide a category, or create new one")
+	//No cascade, we want to leav category intact while saving product
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinProperty(name="category")	
+	private Category category;
 	
 	
     public Product() {
@@ -81,10 +91,11 @@ public class Product {
 		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", category="
 				+ category + "]";
 	}
-    
-    
-    
+
+
 	
+    
+    
 	
 
 }

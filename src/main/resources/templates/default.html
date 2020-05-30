@@ -43,10 +43,7 @@
           <li class="nav-item dropdown" th:if="${userOnNavbar}">
             <a class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">Categories</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-            	
           		<tr th:each="categories: ${categories}">
-				   
-				   
 				     <a class="dropdown-item"  th:text="${categories.name}" th:href="@{'/products/' + ${categories.id}}">Action</a>
 				</tr>
 			

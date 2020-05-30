@@ -52,11 +52,11 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-mongodb</artifactId>
-		    <version>2.2.5.RELEASE</version>
-		</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    <version>2.2.4.RELEASE</version>
+</dependency>
 		<dependency>
 		    <groupId>org.springframework.session</groupId>
 		    <artifactId>spring-session-data-mongodb</artifactId>
@@ -67,13 +67,25 @@
 		    <artifactId>thymeleaf-layout-dialect</artifactId>
 		    <version>2.4.1</version>
 		</dependency>
+
 		<dependency>
 		  <groupId>com.algolia</groupId>
 		  <artifactId>algoliasearch-core</artifactId>
 		  <version>3.6.1</version>
 		</dependency>
-
-	    
+		
+		<dependency>
+		  <groupId>com.algolia</groupId>
+		  <artifactId>algoliasearch-apache</artifactId>
+		  <version>3.6.1</version>
+		</dependency>
+		 <dependency>
+		    <groupId>io.github.kaiso.relmongo</groupId>
+		    <artifactId>relmongo</artifactId>
+		    <version>3.3.1</version>
+		 </dependency>
+		
+			    
 	    
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

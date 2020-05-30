@@ -1,16 +1,19 @@
 package com.springboot.amazonclone;
-
+import java.io.IOException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
 import com.springboot.amazonclone.entity.Role;
 import com.springboot.amazonclone.repository.RoleRepository;
 
 @SpringBootApplication
 public class AmazoncloneApplication {
 	
+	//@Autowired
+	//AlgoliaSearchConfig algoliaSearchConfig;
+	
+
 	@Bean
 	CommandLineRunner init(RoleRepository roleRepository) {
 
@@ -35,6 +38,8 @@ public class AmazoncloneApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AmazoncloneApplication.class, args);
+		
+		
 		
 		
 	}

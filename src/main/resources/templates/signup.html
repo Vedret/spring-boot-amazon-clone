@@ -15,8 +15,8 @@
                <td th:if="${#fields.hasErrors('email')}"  th:errors="*{email}" th:color="red">Name Error</td>
                 <td th:if="${#fields.hasErrors('password')}"  th:errors="*{password}" th:color="red">Name Error</td>
                 
-                <label for="inputUsername" class="sr-only">Username</label>
-                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Username" required="" />
+                <label for="email" class="sr-only">email</label>
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="email" required="" />
                 
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="" />

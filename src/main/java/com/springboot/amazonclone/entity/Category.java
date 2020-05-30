@@ -1,20 +1,18 @@
 package com.springboot.amazonclone.entity;
 
+import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Document(collection = "category")
-
 public class Category {
 
 	    @Id
 	    private String id;
-	    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
+	    @NotEmpty(message = "*Please provide a name of category")
 	    private String name;
-	    
+
 	    public Category() {
 	    	
 	    }

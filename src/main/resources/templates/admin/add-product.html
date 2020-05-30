@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+       layout:decorate="~{default}">
+    <head>
+        <title>Login</title>
+    </head>
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
+   </div>
+    <body class="text-center">
+        <div layout:fragment="content">
+            <form class="form-signin" th:action="@{/admin/add-product}" method="post" th:object="${product}" >
+                 <h1 class="h3 mb-3 font-weight-normal">Add a new product</h1>
+                    
+               
+              
+             
+                
+                <div th:if="${successMessage}" class="alert alert-success alert-dismissable" th:utext="${successMessage}">
+               </div>
+                <div th:if="${errorMessage}" class="alert alert-success alert-dismissable" th:utext="${errorMessage}">
+               </div>
+                            
+               
+                 <td th:if="${#fields.hasErrors('name')}"  th:errors="*{name}" th:color="red">Name Error</td>
+                <label for="Name" class="sr-only">Name</label>
+                <input type="text" name="name" id="Name" class="form-control" placeholder="Name of product" required=""/>
+               
+               <label for="Image" class="sr-only">Image</label>
+                <input type="text" name="image" id="Image" class="form-control" placeholder="Image location" />
+           		
+           		<p style ="color: red"> <td th:if="${#fields.hasErrors('price')}"  th:errors="*{price}"   >Name Error</td></p>
+           	    <label for="Price" class="sr-only">Price</label>
+                <input type="text" name="price" id="Price" class="form-control" placeholder="Price of product" required=""/>
+
+	          	<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <label class="input-group-text" for="inputGroupSelect01">Category</label>
+				  </div>
+			    <select name="category.id" id="category"   class="custom-select" >
+			       <option selected>Choose...</option>
+				    <tr th:each="categories: ${categories}">
+					   <option  th:text="${categories.name}"  th:value="${categories.id}">Action</option>   
+					</tr>
+				  </select>
+				</div>
+         
+
+                <button class="btn btn-sm btn-success btn-block" type="Submit">Submit</button>
+                
+            </form>
+        </div>
+    </body>
+</html>

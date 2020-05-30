@@ -15,11 +15,12 @@
                 
                 <div th:if="${successMessage}" class="alert alert-success alert-dismissable" th:utext="${successMessage}">
                </div>
-               <div class="alert alert-danger alert-dismissable" th:if="${#fields.hasErrors('category')}"  th:errors="*{category}" th:color="red">Name Error            
+               <div class="alert alert-danger alert-dismissable" th:if="${#fields.hasErrors('name')}"  th:errors="*{name}" th:color="red">Name Error            
                </div>
-                
-                <label for="inputEmail" class="sr-only">Name</label>
-                <input type="text" name="category" id="inputEmail" class="form-control" placeholder="Name of category" required="" />
+               
+                <!-- Must implement condition to not submitting empty input field here --> 
+                <label for="Name" class="sr-only">Name</label>
+                <input type="text" name="name" id="Name" class="form-control" placeholder="Name of category" required=""/>
            
                 <button class="btn btn-sm btn-success btn-block" type="Submit">Submit</button>
                 
