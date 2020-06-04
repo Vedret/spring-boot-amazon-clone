@@ -46,7 +46,4 @@ body {
   margin-bottom: 10px;
 }
 
-#borderDemo {
-border: 1px groove #DADADA ;
-background: rgba(240,240,240,0.66) url("") no-repeat scroll 0px 0px;
-}
+

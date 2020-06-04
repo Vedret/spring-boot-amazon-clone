@@ -19,7 +19,7 @@ public class LoginController extends ModelAndAttributeSuperClass {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login() {
 	    ModelAndView modelAndView = new ModelAndView();
-	    modelAndView.setViewName("login");
+	    modelAndView.setViewName("accounts/login");
 	    return modelAndView;
 	}
 	
@@ -30,7 +30,7 @@ public class LoginController extends ModelAndAttributeSuperClass {
 	    ModelAndView modelAndView = new ModelAndView();
 	    User user = new User();
 	    modelAndView.addObject("user", user);
-	    modelAndView.setViewName("signup");
+	    modelAndView.setViewName("accounts/signup");
 	    return modelAndView;
 	}
 	
@@ -43,34 +43,23 @@ public class LoginController extends ModelAndAttributeSuperClass {
 	                .rejectValue("email", "error.email",
 	                        "There is already a user registered with the username provided");
 	        			
-	        			 modelAndView.setViewName("signup");
+	        			 modelAndView.setViewName("accounts/signup");
 	    }
 	    
 	    if (bindingResult.hasErrors()) {
-	        modelAndView.setViewName("signup");
+	        modelAndView.setViewName("accounts/signup");
 	 
 	    } else {
 	        userService.saveUser(user);
 	        modelAndView.addObject("successMessage", "User has been registered successfully");
 	        modelAndView.addObject("user", new User());
-	        modelAndView.setViewName("login");
+	        modelAndView.setViewName("accounts/login");
 
 	    }
 	    return modelAndView;
 	}
 	
-	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public ModelAndView dashboard() {
-	    ModelAndView modelAndView = new ModelAndView();
-	    
-	    modelAndView.setViewName("dashboard");
-	    return modelAndView;
-	}
-	
-	
-	
-	
-	
+
 	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
 	public ModelAndView home(HttpSession session) {
 	    ModelAndView modelAndView = new ModelAndView();

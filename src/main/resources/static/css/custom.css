@@ -1,0 +1,21 @@
+#borderDemo {
+border: 1px groove #DADADA ;
+background: rgba(240,240,240,0.66) url("") no-repeat scroll 0px 0px;
+}
+
+#productTextalign {
+	font-size: 12px;
+	padding: 0 30px 0 10px;
+    text-align:left;
+}
+
+body {
+  padding-top: 100px;
+}
+
+#navbar-gap {
+  margin-top: -4%;
+}
+#productsearchalign {
+	 margin : 0 auto;
+}

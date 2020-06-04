@@ -1,4 +1,6 @@
 package com.springboot.amazonclone.controller;
+import java.util.Arrays;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -108,6 +110,8 @@ public class AdminController extends ModelAndAttributeSuperClass {
 				    try {
 				    	
 				    	//Save product to Mongo db
+				    	//Category category = categoryRepository.findByCategoryId();
+				    	//addNewProduct.setCategory(Arrays.asList(new Category[] { category }));
 						productRepository.save(addNewProduct);
 						//Save product to Algolia search
 						algoliaRepository.initAlgoliaIndex(addNewProduct);

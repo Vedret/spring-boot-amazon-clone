@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{default}">
+<head>
+<title>Dashboard</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<div class="jumbotron" id="navbar-gap">
+			
+				<h2 class="text-center" th:inline="text">
+					Hello [[${#httpServletRequest.remoteUser}]]!
+					</h1>
+					<h1 class="text-center">Find your favourite Product</h1>
+					<p class="text-center">Search many of Ecommerce's products</p>
+					<div class="row">
+						<div class="col-md-8 col-md-offset-10" id="productsearchalign">
+
+							<!-- Search form -->
+							<form
+								class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2"
+								th:action="@{/product/search}" method="post">
+								<input name="q" class="form-control form-control-sm mr-3 w-75"
+									type="text" placeholder="Search for a product...."
+									aria-label="Search"> <i class="fas fa-search"
+									aria-hidden="true"></i>
+							</form>
+
+						</div>
+					</div>
+			</div>
+	
+
+
+
+		<div class="container">
+			<div class="row">
+				<tr th:each="product: ${page.content}">
+					<div class="col-md-4">
+						<a th:href="@{'/product/' + ${product.id}}">view</a>
+						<div id="borderDemo" class="thumbnail">
+							<img class="img-thumbnail" th:src="${product.image}" />
+							<div id="productTextalign" class="caption">
+								<h3 th:text="${product.name}" />
+								<p>
+									$ <span th:text="${product.price}"></span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</tr>
+			</div>
+			<div class="mt-2 col-md-12"></div>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+
+					<span th:if="${page.hasPrevious()}"> <a class="page-link"
+						th:href="@{/dashboard(page=${page.number-1},size=${page.size})}">Previous</a>
+					</span>
+					<th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+						<span th:if="${page.number == i}" class="page-link">[[${i}+1]]</span>
+						<span th:unless="${page.number == i}"> <a class="page-link"
+							th:href="@{/dashboard(page=${i},size=${page.size})}">[[${i}+1]]</a>
+						</span>
+					</th:block>
+					<span th:if="${page.hasNext()}"> <a class="page-link"
+						th:href="@{/dashboard(page=${page.number+1},size=${page.size})}">Next</a>
+					</span>
+
+				</ul>
+			</nav>
+		</div>
+		<div class="mt-2 col-md-12"></div>
+	</div>
+</body>
+</html>

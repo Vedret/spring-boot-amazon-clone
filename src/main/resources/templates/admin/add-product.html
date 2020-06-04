@@ -11,11 +11,7 @@
         <div layout:fragment="content">
             <form class="form-signin" th:action="@{/admin/add-product}" method="post" th:object="${product}" >
                  <h1 class="h3 mb-3 font-weight-normal">Add a new product</h1>
-                    
-               
-              
-             
-                
+
                 <div th:if="${successMessage}" class="alert alert-success alert-dismissable" th:utext="${successMessage}">
                </div>
                 <div th:if="${errorMessage}" class="alert alert-success alert-dismissable" th:utext="${errorMessage}">
@@ -40,12 +36,12 @@
 			    <select name="category.id" id="category"   class="custom-select" >
 			       <option selected>Choose...</option>
 				    <tr th:each="categories: ${categories}">
-					   <option  th:text="${categories.name}"  th:value="${categories.id}">Action</option>   
+					   <option  th:text="${categories.name}"  th:value="${categories.id}">Action</option>  
+					  
 					</tr>
 				  </select>
 				</div>
          
-
                 <button class="btn btn-sm btn-success btn-block" type="Submit">Submit</button>
                 
             </form>

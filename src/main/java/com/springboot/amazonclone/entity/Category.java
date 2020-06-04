@@ -3,8 +3,9 @@ package com.springboot.amazonclone.entity;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import io.github.kaiso.relmongo.config.EnableRelMongo;
 
-
+@EnableRelMongo
 @Document(collection = "category")
 public class Category {
 
@@ -13,17 +14,16 @@ public class Category {
 	    @NotEmpty(message = "*Please provide a name of category")
 	    private String name;
 
+	    /*@OneToMany(fetch=FetchType.LAZY)
+		@JoinProperty(name="id")	
+		private List<Product> product;*/
+	    
+
+	    
 	    public Category() {
 	    	
 	    }
 	    
-	
-		public Category(String id, String name) {
-			super();
-			this.id = id;
-			this.name = name;
-		}
-
 
 		public String getName() {
 			return name;
@@ -32,26 +32,19 @@ public class Category {
 			this.name = name;
 		}
 
+
 		public String getId() {
 			return id;
 		}
 
-
 		public void setId(String id) {
 			this.id = id;
 		}
-
 
 		@Override
 		public String toString() {
 			return "Category [id=" + id + ", name=" + name + "]";
 		}
 		
-		
-
-
-		
-		
-	    
-	    
+    
 }

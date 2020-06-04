@@ -9,20 +9,20 @@
    </div>
     <body class="text-center">
         <div layout:fragment="content">
-       
+       <!-- Implement condition to return message if product can not be found in database -->
            <div class="container">
            	<div class="row">
-	           	<tr th:each="product: ${product}">		
+	           	<tr th:each="search: ${search}">		
 		           	<div class="col-md-4">
 			           	
-			          	<a th:href="@{'/product/' + ${product.id}}">view</a>			   				   
+			          	<a th:href="@{'/product/' + ${search.id}}">view</a>			   				   
 						
 							     
 							<div id="borderDemo" class="thumbnail"  >
-								<img class="img-thumbnail" th:src="${product.image}">
-									<div id="productTextalign" class="caption">
-									 <h3 th:text="${product.name}" />								
-									  <p>$ <span th:text="${product.price}"></span></p>
+								<img class="img-thumbnail" th:src="${search.image}">
+									<div class="caption">
+									 <h3 th:text="${search.name}" />								
+									  <p>$ <span th:text="${search.price}"></span></p>
 									</div>
 							</div>
 					 </div>		

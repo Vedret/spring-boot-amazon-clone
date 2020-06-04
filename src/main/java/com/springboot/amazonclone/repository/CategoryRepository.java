@@ -8,5 +8,6 @@ import com.springboot.amazonclone.entity.Category;
 public interface  CategoryRepository extends MongoRepository<Category, String> {
 	
 	Category findByName(String name);
-
+	Category findCategoryById(String id);
+	
 }
