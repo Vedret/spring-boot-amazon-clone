@@ -20,10 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.springboot.amazonclone.entity.Cart;
+import com.springboot.amazonclone.entity.CartItem;
 import com.springboot.amazonclone.entity.Product;
 import com.springboot.amazonclone.entity.User;
-
+import com.springboot.amazonclone.repository.CartRepository;
 import com.springboot.amazonclone.repository.ProductRepository;
 import com.springboot.amazonclone.service.CustomUserDetailsService;
 
@@ -36,6 +37,7 @@ public class UserController extends ModelAndAttributeSuperClass {
 	
 	@Autowired
 	private CustomUserDetailsService userService;
+
 	
 	@Autowired
 	private ProductRepository productRepository;
@@ -69,18 +71,19 @@ public class UserController extends ModelAndAttributeSuperClass {
 	@RequestMapping(value = "/products/{category_id}", method = RequestMethod.GET)
 	public ModelAndView allProductsByCategory(@PathVariable String category_id) {
 
-		List<Product> product = productRepository.findByCategoryId(new ObjectId(category_id));		
+		List<Product> product = productRepository.findByCategoryId(category_id);		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("product", product);
 		modelAndView.setViewName("user/category");
 		return modelAndView;
 	}
 	
-	//Products controller, show single product page
+	//Products controller, show single product page/ 
 	@RequestMapping(value = "/product/{product_id}", method = RequestMethod.GET)
 	public ModelAndView showSingleProduct(@PathVariable String product_id) {
-
-		Product product = productRepository.findProductById(product_id);		
+		
+		
+		Product product = productRepository.findProductById(product_id);	
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("product", product);

@@ -19,3 +19,14 @@ body {
 #productsearchalign {
 	 margin : 0 auto;
 }
+
+#shoppingCart{
+	padding-top: 10px;
+	font-size:32px;
+	color:white
+}
+#shoppingCartTotal{
+	padding-top: 15px;
+	font-size:14px;
+	color:white
+}

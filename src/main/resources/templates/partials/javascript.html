@@ -1,6 +1,7 @@
    <div id="javascript" th:fragment="javascript">
  <!-- Bootstrap core JavaScript
     ================================================== -->
+    
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.5.1.min.js"><\/script>')</script>
@@ -11,6 +12,22 @@
 	<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 	<script src="/css/popper.min.js"></script>
 	<script src="/css/search.js"></script>
-	<script src="app.js"></script>
+	
+	
+	 <script th:inline="javascript">
+    function addToCart(url) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", url, true);
+        xhttp.onload = function () {
+            let responseURL = xhttp.responseURL;
+            console.log("Redirecting to:", responseURL);
+            window.location.replace(responseURL);
+        };
+        xhttp.send();
+    }
+</script>
+	
+	
+	
  
  </div>

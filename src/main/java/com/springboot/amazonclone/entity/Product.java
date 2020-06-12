@@ -20,7 +20,7 @@ public class Product {
 	private String name;
 	
 	@Range(min=0,max=1000000)//(message = "*Please provide a price of product")
-	private Number price;
+	private double price;
 	
 	private String image;
 	
@@ -42,10 +42,10 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Number getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(Number price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public String getImage() {
@@ -66,6 +66,11 @@ public class Product {
 	}
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", category="
+				+ category + "]";
 	}
 	
  	

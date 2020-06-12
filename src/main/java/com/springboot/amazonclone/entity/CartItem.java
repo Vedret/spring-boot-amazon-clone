@@ -7,13 +7,20 @@ import io.github.kaiso.relmongo.config.EnableRelMongo;
 @Document(collection = "cartitem")
 public class CartItem {
 	
-	private CartItem(){
+	CartItem(){
 	}
 	
 	
 	private Product product;
-	private int quantity=1;
-	private double  price=0;
+	private int quantity;
+	private double  totalprice;
+	
+public CartItem(Product product) {
+		
+		this.product = product;
+		this.quantity = 1;
+		this.totalprice = product.getPrice();
+	}
 	
 	public Product getProduct() {
 		return product;
@@ -27,12 +34,19 @@ public class CartItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public double getPrice() {
-		return price;
+	public double geTotalprice() {
+		return totalprice;
 	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setTotalprice(double totalprice) {
+		this.totalprice = totalprice;
 	}
+
+	@Override
+	public String toString() {
+		return "CartItem [product=" + product + ", quantity=" + quantity + ", totalprice=" + totalprice + "]";
+	}
+
+	
 	
 	
 

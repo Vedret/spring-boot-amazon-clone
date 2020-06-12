@@ -7,7 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.springboot.amazonclone.entity.Cart;
 import com.springboot.amazonclone.entity.User;
+import com.springboot.amazonclone.repository.CartRepository;
 import com.springboot.amazonclone.service.CustomUserDetailsService;
 
 @Controller
@@ -15,6 +18,9 @@ public class LoginController extends ModelAndAttributeSuperClass {
 	
 	@Autowired
 	private CustomUserDetailsService userService;
+	
+	@Autowired
+	private CartRepository cartRepository;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login() {
@@ -50,7 +56,10 @@ public class LoginController extends ModelAndAttributeSuperClass {
 	        modelAndView.setViewName("accounts/signup");
 	 
 	    } else {
-	        userService.saveUser(user);
+	    	userService.saveUser(user);
+	    	user = userService.findUserByEmail(user.getEmail());
+	    	//Create cart with user Id
+	    	 cartRepository.save(new Cart (user.getId()) );
 	        modelAndView.addObject("successMessage", "User has been registered successfully");
 	        modelAndView.addObject("user", new User());
 	        modelAndView.setViewName("accounts/login");
