@@ -10,22 +10,9 @@
     <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
 	<script src="https://cdn.jsdelivr.net/npm/algoliasearch@3/dist/algoliasearchLite.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
-	<script src="/css/popper.min.js"></script>
-	<script src="/css/search.js"></script>
-	
-	
-	 <script th:inline="javascript">
-    function addToCart(url) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", url, true);
-        xhttp.onload = function () {
-            let responseURL = xhttp.responseURL;
-            console.log("Redirecting to:", responseURL);
-            window.location.replace(responseURL);
-        };
-        xhttp.send();
-    }
-</script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/search.js"></script>
+	<script src="/js/alertify.min.js"></script>
 	
 	
 	

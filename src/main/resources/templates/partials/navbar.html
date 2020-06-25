@@ -35,9 +35,7 @@
 			        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
 			    </svg>
 			</div>	
-          			<li> 
-          			
-       				 </li>
+          
        				 
        				   <li class="nav-item dropdown" th:if="${userOnNavbar == null}"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" >Signup / Login</a>
 				        <ul class="dropdown-menu">
@@ -48,15 +46,25 @@
        				 
        				 <li class="nav-item dropdown" th:if="${userOnNavbar}"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" th:text="${userOnNavbar.getFullname()}" ></a>
        				 	  <ul class="dropdown-menu">
-					          <li><a href="/profile">Profile</a></li>
+					          <li><a href="/edit-profile">Profile</a></li>
 					          <li><a href="/logout">Logout</a></li>
 					        </ul>
-					      </li>
-					      
-					  <svg class="bi bi-cart" id="shoppingCart" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-					  <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-					</svg>
-					<span id="shoppingCartTotal">10</span>
+					     
+					   </li>
+					   <li th:if="${userOnNavbar}">    <a th:href="@{'/cart/' + ${userOnNavbar.id}}" >
+						  <svg  class="bi bi-cart" id="shoppingCart" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						  <path  fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+						
+						 </svg>
+						 </a>
+						 <input type="hidden" name="quantity" id="quantityCartNavbar" value="0"></input>
+						 
+						 
+						 
+						 <span class="ng-cloak" ng-controller="cartCtrl" ng-init="initCartId()" style="color:white">{{cart.cartItems.length}}</span>
+						 
+						 
+						</li> 
                 </ul>
       </div>
     </nav>

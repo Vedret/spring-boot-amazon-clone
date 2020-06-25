@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.amazonclone.entity.Cart;
+import com.springboot.amazonclone.entity.CartItem;
 
 import io.github.kaiso.relmongo.config.EnableRelMongo;
 
@@ -21,9 +22,7 @@ public interface CartRepository extends MongoRepository<Cart, String> {
 	
 	Cart findCartById(String id);
 	Cart save(Cart cart);
-	
-	
-	
+
 
 	//Cart findByCartId(String cartId);
 	//Cart saveCart(Cart cart);

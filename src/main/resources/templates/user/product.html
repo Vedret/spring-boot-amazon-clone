@@ -18,7 +18,7 @@
 					 </div>	
 					 <div class="col-md-4">			           			          	
 					 </div>		
-					 <div style="text-align:left" class="col-md-4" ng-app="cartApp">	
+					 <div style="text-align:left" class="col-md-4" >	
 					 <h1  th:text="${product?.name}" />	
 					 <p><h2>$ <span th:text="${product?.price}"></span></h2></p>	    
 					  
@@ -31,19 +31,22 @@
 				          <button type="button" id="total" class="btn btn-default" th:with="url = @{cart/addToCart}">0</button>
 				          
 				          <button type="button" th:attr="ng-click='addCartItem(\''+${product.id}+'\');'" id="plus" class="btn btn-default">+</button>
-				          
+				       
 				        </div>
-				
+						
 				        <div class="form-group">
+				        <br> 
 				          <input type="hidden" name="product_id" id="quantity" th:value="${product?.id}"></input>
 				          <input type="hidden" name="priceHidden" id="priceHidden" th:value="${product?.price}"></input>
 				
 				          <input type="text" name="item" class="form-control" th:value="${product?.name}"></input>
-				          <input type="text" name="priceValue" id="priceValue" class="form-control" th:value="${product?.price}"></input>
+				          
+				          <input type="text" name="priceValue" id="priceValue" class="form-control" value=0></input>
 				        </div>
 
-					<button type="button" th:with="url = @{test}" th:onclick="addToCart([[${url}]])" class="btn btn-primary btn-lg">Add to Cart</button>
-       	
+					<button type="button"  th:attr="ng-click='clearCart();'"  class="btn btn-primary btn-lg">Check out</button>
+				      
+		      			          	
 					 </div>			
 					
 	           	</div>

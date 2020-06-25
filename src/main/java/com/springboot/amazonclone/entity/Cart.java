@@ -1,30 +1,40 @@
 package com.springboot.amazonclone.entity;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import io.github.kaiso.relmongo.annotation.CascadeType;
+import io.github.kaiso.relmongo.annotation.FetchType;
+import io.github.kaiso.relmongo.annotation.JoinProperty;
+import io.github.kaiso.relmongo.annotation.ManyToOne;
+import io.github.kaiso.relmongo.annotation.OneToMany;
 import io.github.kaiso.relmongo.config.EnableRelMongo;
 
 @EnableRelMongo
 @Document(collection = "cart")
 public class Cart {
 	
+
+	
 	@Id
 	private String id;
 	
-	//HashMap can put, remove, delete etc.
-	private Map<String , CartItem> cartItems;
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinProperty(name="cart")
+	private List<CartItem> cartItems;
 	//Total cost of Cart
 	private double grandTotal;
-	
-	//Default cart constructor
-	public Cart(){
-		cartItems = new HashMap<String , CartItem>();
-		grandTotal=0;
+
+	private  Cart() {
+		
+		cartItems = new ArrayList<CartItem>();
+		this.grandTotal = 0;
 	}
+
 
 
 	public Cart(String id) {
@@ -33,17 +43,11 @@ public class Cart {
 	}
 
 
-	public Cart(String id, Map<String, CartItem> cartItems, double grandTotal) {
-		super();
-		this.id = id;
-		this.cartItems = cartItems;
-		this.grandTotal = grandTotal;
-	}
-
 
 	public String getId() {
 		return id;
 	}
+
 
 
 	public void setId(String id) {
@@ -51,85 +55,92 @@ public class Cart {
 	}
 
 
-	public Map<String, CartItem> getCartItems() {
+
+	
+
+
+	public List<CartItem> getCartItems() {
 		return cartItems;
 	}
-	public void setCartItems(Map<String, CartItem> cartItems) {
+
+
+
+	public void setCartItems(List<CartItem> cartItems) {
 		this.cartItems = cartItems;
 	}
+
+
+
 	public double getGrandTotal() {
 		return grandTotal;
 	}
+
+
+
 	public void setGrandTotal(double grandTotal) {
 		this.grandTotal = grandTotal;
 	}
-
 	
-	//Add cart item(product), check if it exists, if so update quantity and price of existing product
-public void addCartItem (CartItem item){
+
+	//Add cart item(product), 
+	public void addCartItem (CartItem item){
 		
 		String productId = item.getProduct().getId();
-		
-		//The key here is only to update price and quantity to and existing cart. If there is product in our cart update only totalprice and quantity 
-		if(cartItems.containsKey(productId)){
-			//Instantiate new obj and fill it with our original bject
-			CartItem existingCartItem = cartItems.get(productId);
-			//increase quantity for 1
-			existingCartItem.setQuantity(existingCartItem.getQuantity()+item.getQuantity());
-			//generate price
-			existingCartItem.setTotalprice(existingCartItem.getQuantity() *existingCartItem.getProduct().getPrice());
-			//cartItems.put(productId, existingCartItem);
-			System.out.println("cartItems if-->"+ cartItems);
-	}else {
-		//If not create new product with quantity one and price
-		cartItems.put(productId,item);
-		System.out.println("cartItems else-->"+ cartItems);
-		
-	
-		//Update grand total
-		}updateGrandTotal();
-}
-
-//Remove cart item is same as add cart item but reverse
-public void removeCartItem (CartItem item){
-	
-		if ((item.getProduct().getId()).isEmpty()) {
-			System.out.println("Emptyyyy ID");
-		}
-
-		String productId = item.getProduct().getId();
-
-		if ((cartItems.get(productId)) != null) {
-			CartItem existingCartItem = cartItems.get(productId);
+		//Looping Method 1: Using for loop: check if it exists, if so update quantity and price of existing product
+		for(int i = 0 ; i < cartItems.size() ; i++){
 			
-			if (existingCartItem.getQuantity() > 1) {
-				existingCartItem.setQuantity(existingCartItem.getQuantity() - item.getQuantity());
-				existingCartItem
-						.setTotalprice(existingCartItem.getQuantity() * existingCartItem.getProduct().getPrice());
-			} else {
-				cartItems.remove(productId);
+			if(cartItems.get(i).getProduct().getId().equals(productId)) {
+				cartItems.get(i).setQuantity(cartItems.get(i).getQuantity()+1);
+				cartItems.get(i).setTotalprice(cartItems.get(i).getQuantity() * item.getProduct().getPrice());
+				System.out.println("CART ITEMS ID=  "+cartItems.size());
+				updateGrandTotal();
+				return;
+			}
+			}
+		
+		cartItems.add(item);
+		updateGrandTotal();
+	
+	}
+
+	//Add cart item(product), 
+		public void removeCartItem (CartItem item){
+			
+			String productId = item.getProduct().getId();
+			//Looping Method 1: Using for loop: check if it exists, if so update quantity and price of existing product
+			for(int i = 0 ; i < cartItems.size() ; i++){
+				
+				if(cartItems.get(i).getProduct().getId().equals(productId)) {
+					if(cartItems.get(i).getQuantity()!=1) {
+					cartItems.get(i).setQuantity(cartItems.get(i).getQuantity()-1);
+					cartItems.get(i).setTotalprice(cartItems.get(i).getQuantity() * item.getProduct().getPrice());	
+					updateGrandTotal();
+					return;
+				}else {
+					//System.out.println("Cartrepository_CartItem "+cartItems.get(i).getQuantity()+" "+cartItems.get(i).getId());
+					cartItems.remove(cartItems.get(i));					
+					updateGrandTotal();
+				    return;
+				}
+				}
+				}
+			
+			//cartItems.remove(item);
+			//updateGrandTotal();
+		
+		}
+	
+	
+	
+	//Update grandTotal of the Cart
+		public void updateGrandTotal(){
+			grandTotal=0;
+			//Looping Method 2: Using for each loop :
+			for(CartItem item : cartItems){
+				grandTotal=grandTotal + item.geTotalprice();
+				
 			}
 		}
-		updateGrandTotal();
-	}
-
-//Update grandTotal of the Cart
-	public void updateGrandTotal(){
-		grandTotal=0;
-		for(CartItem item : cartItems.values()){
-			grandTotal=grandTotal + item.geTotalprice();
-			System.out.println("GTOTALE==="+ grandTotal);
-		}
-	}
-
-
-@Override
-public String toString() {
-	return "Cart [id=" + id + ", cartItems=" + cartItems + ", grandTotal=" + grandTotal + "]";
-}
 
 
 }
-	
-
-

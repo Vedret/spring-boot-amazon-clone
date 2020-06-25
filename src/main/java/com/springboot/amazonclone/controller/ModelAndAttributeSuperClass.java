@@ -35,11 +35,6 @@ public class ModelAndAttributeSuperClass {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    User userOnNavBar = userService.findUserByEmail(auth.getName());
-	    //System.out.println("Usseeeer"+userOnNavBar);
-	   // ModelAndView modelAndView = new ModelAndView();
-	   // modelAndView.addObject("currentUser", userOnNavbar);
-	    //modelAndView.addObject("fullName", "Welcome " + user.getFullname());
-	    //modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
 		return userOnNavBar;
 	}
 	

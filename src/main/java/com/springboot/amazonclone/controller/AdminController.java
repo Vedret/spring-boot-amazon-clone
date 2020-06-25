@@ -31,16 +31,7 @@ public class AdminController extends ModelAndAttributeSuperClass {
 	
 	@RequestMapping(value = "/admin/add-category", method = RequestMethod.GET)
 	public ModelAndView category() {
-		
-		//TEST ALGOLIA INDEX
-		/*try {
-			algoliaSearchConfig.initAlgoliaIndex();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
-		//
+	
 	    ModelAndView modelAndView = new ModelAndView();
 	    //Category category = new Category();
 	    modelAndView.addObject("category", new Category());

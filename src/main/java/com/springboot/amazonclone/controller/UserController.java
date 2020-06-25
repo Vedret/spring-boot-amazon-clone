@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springboot.amazonclone.entity.Cart;
 import com.springboot.amazonclone.entity.CartItem;
 import com.springboot.amazonclone.entity.Product;
 import com.springboot.amazonclone.entity.User;
@@ -49,7 +48,7 @@ public class UserController extends ModelAndAttributeSuperClass {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    User user = userService.findUserByEmail(auth.getName());
 	    modelAndView.addObject("currentUser", user);
-	    modelAndView.setViewName("edit-profile");
+	    modelAndView.setViewName("user/edit-profile");
 	    return modelAndView;
 	}
 	

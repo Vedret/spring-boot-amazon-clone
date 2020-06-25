@@ -4,7 +4,9 @@
       >
   <head lang="en" th:replace="partials/header :: header"> </head>
 
-  <body>
+  <body >
+  <!-- Angular cart app must go on the top so it can be used in navbar and templates too -->
+  <main ng-app="cartApp" >
 		   <head lang="en" th:replace="partials/navbar :: navbar"> </head>
 		
 		      <div class="container">
@@ -15,4 +17,5 @@
 		  <div lang="en" th:replace="partials/footer :: footer"> </div>
 		  <div lang="en" th:replace="partials/javascript :: javascript"> </div>
     </body>
+    </main>
 </html>
