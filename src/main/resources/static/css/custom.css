@@ -13,9 +13,7 @@ body {
   padding-top: 100px;
 }
 
-#navbar-gap {
-  margin-top: -4%;
-}
+
 #productsearchalign {
 	 margin : 0 auto;
 }
@@ -29,4 +27,34 @@ body {
 	padding-top: 15px;
 	font-size:14px;
 	color:white
+}
+
+.nav{
+margin-bottom: 0 !important;
+border: 0 !important;
+}
+
+.dashboardImage {
+	background: url('/images/threely-photo.jpeg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 250px;
+	text-align: center;
+	
+	display:block;
+
+}
+.homeImage {
+	background: url('/images/threely-photo.jpeg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 500px;
+	text-align: center;
+	
+	display:block;
+
 }

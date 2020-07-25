@@ -1,5 +1,5 @@
  <nav th:fragment="navbar" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">ShoppNow</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -37,17 +37,18 @@
 			</div>	
           
        				 
-       				   <li class="nav-item dropdown" th:if="${userOnNavbar == null}"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" >Signup / Login</a>
-				        <ul class="dropdown-menu">
-				          <li><a href="/signup">Signup</a></li>
-				          <li><a href="/login">Login</a></li>
+       				   <li class="nav-item dropdown" th:if="${userOnNavbar == null}">
+       				   <a class="nav-link dropdown-toggle" data-toggle="dropdown"  href="#" >Signup / Login</a>
+				        <ul class="dropdown-menu" >
+				          <li ><a class="dropdown-item"  href="/signup">Signup</a></li>
+				          <li><a a class="dropdown-item"  href="/login">Login</a></li>
 				        </ul>
 				      </li>
        				 
        				 <li class="nav-item dropdown" th:if="${userOnNavbar}"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" th:text="${userOnNavbar.getFullname()}" ></a>
        				 	  <ul class="dropdown-menu">
-					          <li><a href="/edit-profile">Profile</a></li>
-					          <li><a href="/logout">Logout</a></li>
+					          <li><a class="dropdown-item"  href="/edit-profile">Profile</a></li>
+					          <li><a class="dropdown-item"  href="/logout">Logout</a></li>
 					        </ul>
 					     
 					   </li>
