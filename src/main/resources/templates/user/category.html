@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-       layout:decorate="~{default}">
-    <head>
-        <title>Login</title>
-    </head>
-    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
-    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
-   </div>
-    <body class="text-center">
-        <div layout:fragment="content">
-       
-           <div class="container">
-           	<div class="row">
-	           	<tr th:each="product: ${product}">		
-		           	<div class="col-md-4">
-			           	
-			          	<a th:href="@{'/product/' + ${product.id}}">view</a>			   				   
-						
-							     
-							<div id="borderDemo" class="thumbnail"  >
-								<img class="img-thumbnail" th:src="${product.image}">
-									<div id="productTextalign" class="caption">
-									 <h3 th:text="${product.name}" />								
-									  <p>$ <span th:text="${product.price}"></span></p>
-									</div>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{default}">
+<head>
+<title>Login</title>
+</head>
+<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+	<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+</div>
+<body class="text-center">
+	<div layout:fragment="content">
+
+		<div class="container">
+			<div class="row">
+				<tr th:each="product: ${product}">
+					<div class="col-md-4">
+
+						<div id="borderDemo" class="thumbnail">
+							<a th:href="@{'/product/' + ${product.id}}"><img
+								class="img-thumbnail" th:src="${product.image}"></a>
+							<div id="productTextalign" class="caption">
+								<h3 th:text="${product.name}" />
+								<p>
+									$ <span th:text="${product.price}"></span>
+								</p>
 							</div>
-					 </div>		
-					</tr>
-	           	</div>
-           	</div>
-           </div>
-        
-    </body>
+						</div>
+					</div>
+				</tr>
+			</div>
+		</div>
+	</div>
+
+</body>
 </html>

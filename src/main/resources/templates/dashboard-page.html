@@ -10,39 +10,37 @@
 
 	<div layout:fragment="content">
 		<div class="dashboardImage">
-				<h2 class="text-center" th:inline="text">
-					Hello [[${#httpServletRequest.remoteUser}]]!
-					</h1>
-					<h1 class="text-center">Find your favorite Product</h1>
-					<p class="text-center">Search many of Ecommerce's products</p>
-					<div class="row">
-						<div class="col-md-8 col-md-offset-10" id="productsearchalign">
+			<h2 class="text-center" th:inline="text">
+				Hello [[${#httpServletRequest.remoteUser}]]!
+				</h1>
+				<h1 class="text-center">Find your favorite Product</h1>
+				<p class="text-center">Search many of Ecommerce's products</p>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-10" id="productsearchalign">
 
-							<!-- Search form -->
-							<form
-								class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2"
-								th:action="@{/product/search}" method="post">
-								<input name="q" class="form-control form-control-sm mr-3 w-75"
-									type="text" placeholder="Search for a product...."
-									aria-label="Search"> <i class="fas fa-search"
-									aria-hidden="true"></i>
-							</form>
+						<!-- Search form -->
+						<form
+							class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2"
+							th:action="@{/product/search}" method="post">
+							<input name="q" class="form-control form-control-sm mr-3 w-75"
+								type="text" placeholder="Search for a product...."
+								aria-label="Search"> <i class="fas fa-search"
+								aria-hidden="true"></i>
+						</form>
 
-						</div>
 					</div>
-			
-			</div>
-	
-
-
+				</div>
+		</div>
 
 		<div class="container">
 			<div class="row">
 				<tr th:each="product: ${page.content}">
 					<div class="col-md-4">
-						<a th:href="@{'/product/' + ${product.id}}">view</a>
+
 						<div id="borderDemo" class="thumbnail">
-							<img class="img-thumbnail" th:src="${product.image}" />
+							<a th:href="@{'/product/' + ${product.id}}"> <img
+								class="img-thumbnail" th:src="${product.image}" />
+							</a>
 							<div id="productTextalign" class="caption">
 								<h3 th:text="${product.name}" />
 								<p>

@@ -16,8 +16,8 @@
 					<div class="col-md-4">
 
 						<div id="borderDemo" class="thumbnail">
-							<img th:href="@{'/product/' + ${search.id}}"
-								class="img-thumbnail" th:src="${search.image}">
+							<a th:href="@{'/product/' + ${search.id}}"><img
+								class="img-thumbnail" th:src="${search.image}"></a>
 							<div class="caption">
 								<h3 th:text="${search.name}" />
 								<p>
