@@ -2,12 +2,6 @@ package com.springboot.amazonclone.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import io.github.kaiso.relmongo.annotation.CascadeType;
-import io.github.kaiso.relmongo.annotation.FetchType;
-import io.github.kaiso.relmongo.annotation.JoinProperty;
-import io.github.kaiso.relmongo.annotation.ManyToOne;
-import io.github.kaiso.relmongo.annotation.OneToMany;
 import io.github.kaiso.relmongo.config.EnableRelMongo;
 
 @EnableRelMongo

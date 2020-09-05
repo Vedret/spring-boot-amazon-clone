@@ -18,8 +18,6 @@ public class LoginController extends ModelAndAttributeSuperClass {
 	@Autowired
 	private CustomUserDetailsService userService;
 	
-	@Autowired
-	private CartRepository cartRepository;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login() {

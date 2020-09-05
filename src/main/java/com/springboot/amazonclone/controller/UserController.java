@@ -1,12 +1,7 @@
 package com.springboot.amazonclone.controller;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
@@ -19,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.springboot.amazonclone.entity.CartItem;
 import com.springboot.amazonclone.entity.Product;
 import com.springboot.amazonclone.entity.User;
-import com.springboot.amazonclone.repository.CartRepository;
 import com.springboot.amazonclone.repository.ProductRepository;
 import com.springboot.amazonclone.service.CustomUserDetailsService;
 
