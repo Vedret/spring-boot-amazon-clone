@@ -23,7 +23,7 @@ class AmazoncloneApplicationTestsSession {
 	    private int port;
 	   
 	   
-	
+	//test 123
 	@Autowired   
     private MongoIndexedSessionRepository repository;
 
