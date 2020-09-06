@@ -4,6 +4,7 @@ target/
 !**/src/main/**
 !**/src/test/**
 ###src/main/resources/application.properties
+src/test/**
 ### STS ###
 .apt_generated
 .classpath
