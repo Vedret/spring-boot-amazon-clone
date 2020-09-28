@@ -108,7 +108,7 @@ public class UserController extends ModelAndAttributeSuperClass {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
-			modelAndView.setViewName("/user/search-result");
+			modelAndView.setViewName("user/search-result");
 			return modelAndView;
 		}
 		
