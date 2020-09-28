@@ -44,7 +44,7 @@
 				          <input type="text" name="priceValue" id="priceValue" class="form-control" value=0></input>
 				        </div>
 
-					<button type="button"  th:attr="ng-click='clearCart();'"  class="btn btn-primary btn-lg">Check out</button>
+					<a type="button" th:href="@{'/cart/' + ${userOnNavbar.id}}" class="btn btn-primary btn-lg">Check out</a>
 				      
 		      			          	
 					 </div>			

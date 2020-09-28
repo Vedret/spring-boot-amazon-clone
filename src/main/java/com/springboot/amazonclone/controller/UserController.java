@@ -28,7 +28,6 @@ public class UserController extends ModelAndAttributeSuperClass {
 	
 	@Autowired
 	private CustomUserDetailsService userService;
-
 	
 	@Autowired
 	private ProductRepository productRepository;
