@@ -35,6 +35,7 @@ public class ModelAndAttributeSuperClass {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    User userOnNavBar = userService.findUserByEmail(auth.getName());
+	    
 		return userOnNavBar;
 	}
 	
