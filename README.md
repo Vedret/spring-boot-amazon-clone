@@ -1,5 +1,5 @@
-# Spring-boot-amazon-clone with Spring security + Bootstrap + Thymeleaf +Mongodb on Atlas + Angular Cart + Algolia search ...
-## Test it here  https://spring-boot-amazon-clone.herokuapp.com
+# Spring-boot-amazon-clone with Spring security + Bootstrap + Thymeleaf +Mongodb on Atlas + Angular Cart + Algolia search + Sripe payment + Heroku PaaS ...
+## Test On Heroku  here  https://spring-boot-amazon-clone.herokuapp.com
 
 Please note that repository is missing application.properties file with connection strings to MongoDb and Algolia search.
 Edit your application.properties add:
